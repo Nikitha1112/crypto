@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoCrack - Predict Algorithm</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Container styles */
+.parent-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    background: #fff;
+    color: #333;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 600px;  /* Increased max-width to make it wider */
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 28px;
+    color: #6a11cb;
+    margin-bottom: 15px; /* Reduced margin */
+    font-weight: 700;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px; /* Reduced bottom margin */
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    margin-top: 5px;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #6a11cb;
+    outline: none;
+}
+
+/* Submit Button */
+.b {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.b:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
+}
+
+/* Result Section */
+#result {
+    display: none;
+    margin-top: 15px; /* Reduced margin */
+    text-align: left;
+}
+
+#result h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #38076d;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .b {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="parent-wrapper">
+        <div class="container">
+            <h1>Identify Encryption Algorithm</h1>
+            <p>Enter the details below to predict the encryption algorithm used.</p>
+
+            <form id="predictionForm">
+                <div class="form-group">
+                    <label for="cipher_text">Cipher Text</label>
+                    <input type="text" id="cipher_text" name="cipher_text" placeholder="Enter Cipher Text" required>
+                </div>
+                <div class="form-group">
+                    <label for="key">Key</label>
+                    <input type="text" id="key" name="key" placeholder="Enter Key" required>
+                </div>
+                <div class="form-group">
+                    <label for="key_length">Key Length</label>
+                    <input type="number" id="key_length" step="any" placeholder="Enter Key Length" required>
+                </div>
+                <div class="form-group">
+                    <label for="cipher_length">Cipher Length</label>
+                    <input type="number" id="cipher_length" step="any" placeholder="Enter Cipher Length" required>
+                </div>
+                <button type="button" onclick="sendData()" class="b">Submit</button>
+            </form>
+
+            <div id="result">
+                <h2>"The Best Algorithm Matches: Top 3 Results"</h2>
+                <p><span class="highlight" id="top1"></span></p>
+                <p id="top2"></p>
+                <p id="top3"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendData() {
+            const key = document.getElementById("key").value;
+    const cipherText = document.getElementById("cipher_text").value;
+    const keyLength = parseFloat(document.getElementById("key_length").value);
+    const cipherLength = parseFloat(document.getElementById("cipher_length").value);
+
+    // Check if any field is empty or contains an invalid number (NaN)
+    if (!key || !cipherText || isNaN(keyLength) || isNaN(cipherLength)) {
+        alert('Please fill in all the fields with valid values.');
+        return;
+    }
+            const data = {
+                key: key,
+                cipher_text: cipherText,
+                key_length: keyLength,
+                cipher_length: cipherLength
+            };
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Prediction:', data);
+
+                // Update result visibility and content
+                const resultDiv = document.getElementById('result');
+                resultDiv.style.display = 'block';
+
+                const top3 = data.top_3 || [];
+
+                // Populate the top 3 predictions
+                document.getElementById('top1').textContent = top3[0] ? `1. ${top3[0]}` : 'Prediction not available';
+                document.getElementById('top2').textContent = top3[1] ? `2. ${top3[1]}` : '';
+                document.getElementById('top3').textContent = top3[2] ? `3. ${top3[2]}` : '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error in prediction');
+            });
+        }
+    </script>
+
+</body>
+</html>

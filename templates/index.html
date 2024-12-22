@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoCrack</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Dialogflow Messenger Script -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <style>
+        /* Apply the custom font family to the entire chatbot */
+        
+        df-messenger {
+            color:gray;
+        }
+    
+        /* If you want to change the font for messages as well, add this */
+        df-messenger .df-message {
+            font-family: 'Times New Roman', Times, serif
+        }
+    
+        /* Customize title bar font if necessary */
+        df-messenger > div > div > div {
+            font-family: 'Times New Roman', Times, serif
+        }
+       
+
+    </style>
+    
+    
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="/static/images/cyber-security-1915628_1280.png" alt="CipherTrace Logo"> 
+            <h4>CryptoCrack</h4>
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Blue Section -->
+    <section class="blue-section">
+        <div class="blue-image">
+            <img src="/static/images/scam-7070718_1280.png" alt="CipherTrace Image">
+        </div>
+        <div class="blue-text">
+            <h1>Unveil the Code with CryptoCrack</h1>
+            <p>Discover the secrets behind encryption in seconds!</p>
+            <button class="start-btn"><a href="/upload">Get Started</a></button>
+        </div>
+    </section>
+
+    <section id="images" class="image-section">
+        <div class="image-wrapper">
+            <img src="/static/images/6649de9b-b6b3-45c9-953b-a216b2215eec-removebg-preview.png" width="200px" alt="Upload File">
+            <p>Upload your file for analysis!</p>
+        </div>
+        <div class="image-wrapper">
+            <img src="/static/images/577ebf2c-8a1d-46a5-9094-912588123cad-removebg-preview.png" width="200px" alt="Crack the Algorithm">
+            <p>Detect and crack the algorithm!</p>
+        </div>
+        <div class="image-wrapper">
+            <img src="/static/images/a36b5709-1b6a-4b75-834c-5394a628a004-removebg-preview.png" width="200px" alt="Download Report">
+            <p>Download your detailed report!</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2>About Our Tool</h2>
+            <p>CryptoCrack helps you analyze and detect encryption types in uploaded text files.
+                Whether it’s AES, RSA, MD5, or SHA, our tool provides instant results with precision.
+            </p>
+            <button class="read-more-btn">Read More</button>
+        </div>
+        <div class="about-image">
+            <img src="/static/images/laptop-8770486_1280.jpg" alt="About Image">
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <h2>What Our Users Say</h2>
+        <div class="cards">
+            <div class="card">
+                <p>"Amazing tool! Helped me identify encryption methods in minutes!"</p>
+                <h4>- User A</h4>
+            </div>
+            <div class="card">
+                <p>"Very accurate and fast. Highly recommend it for any developer!"</p>
+                <h4>- User B</h4>
+            </div>
+            <div class="card">
+                <p>"The best encryption detection tool out there!"</p>
+                <h4>- User C</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dialogflow Chatbot Integration -->
+    <df-messenger
+        chat-title="CryptoBot"
+        agent-id="bb1705f9-ace8-4c0f-8134-f4b33896a5ab"
+        language-code="en"
+    ></df-messenger>
+    
+
+    <script>
+        // Check if the user has already clicked the "chat with CryptoBot" box
+        if (!localStorage.getItem('hasInteractedWithBot')) {
+            document.querySelector('.chat-info-box').style.display = 'block';
+        }
+
+        // Add event listener to hide the chat info box when it's clicked
+        document.querySelector('.chat-info-box').addEventListener('click', function() {
+            localStorage.setItem('hasInteractedWithBot', 'true');
+            this.style.display = 'none';
+        });
+    </script>
+    <!-- Footer Section -->
+    <footer id="contact" class="footer">
+        <p>&copy; 2024 CipherTrace. All rights reserved.</p>
+        <p>Contact us: support@ciphertrace.com | +1 234-567-890</p>
+    </footer>
+</body>
+</html>
