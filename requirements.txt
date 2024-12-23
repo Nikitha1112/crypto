@@ -7,7 +7,6 @@ numpy
 openai
 requests
 scikit-learn
-
 tensorboard
 tensorboard-data-server
 tensorflow
